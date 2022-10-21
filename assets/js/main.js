@@ -28,7 +28,7 @@ const images = [
 ];
 
 // stampo in console array 
-console.log(images);
+//console.log(images);
 
 let activeImg = 0;
 
@@ -48,7 +48,8 @@ for (let i = 0; i < images.length; i++) {
     </div>
    `
 
-    document.querySelector('.row').insertAdjacentHTML('afterbegin', imagesMarkup)
+    document.querySelector('.row').insertAdjacentHTML('beforeend', imagesMarkup)
+    //console.log(imagesMarkup);
 }
 
 
@@ -62,7 +63,7 @@ const nextButton = document.querySelector('.next');
 prevButton.addEventListener('click', function(){
     
     // seleziono tutte le immagini e trovo quella attiva
-    const allSlides = document.querySelector('.col-10.active');
+    const allSlides = document.querySelectorAll('.col-10');
     
     const activeSlide = allSlides[activeImg];
     //  devo togliere la classe active all'immagine corrente
@@ -82,7 +83,7 @@ prevButton.addEventListener('click', function(){
 // aggiungo funzione click su pulsante next
 nextButton.addEventListener('click', function() {
     // seleziono tutte le immagini e trovo quella attiva
-    const allSlides = document.querySelector('.col-10.active');
+    const allSlides = document.querySelectorAll('.col-10');
     console.log(allSlides);
     
     const activeSlide = allSlides[activeImg];

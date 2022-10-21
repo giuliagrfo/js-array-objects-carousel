@@ -9,6 +9,7 @@ img {
 
 .col-10 {
     display: none;
+    position: absolute;
 }
 
 
@@ -20,9 +21,9 @@ img {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    height: 80%;
+    height: 500px;
     position: relative;
-    left: -80%;
+    right: -50%;
     
 }
 
