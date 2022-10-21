@@ -70,6 +70,9 @@ prevButton.addEventListener('click', function(){
     activeSlide.classList.remove('active');
     
     // decremento le immagini di 1
+    if(activeImg == images.length-5){
+        activeImg = 5
+    }
     activeImg--;
     
     //seleziono la seconda immagine
@@ -82,6 +85,7 @@ prevButton.addEventListener('click', function(){
 
 // aggiungo funzione click su pulsante next
 nextButton.addEventListener('click', function() {
+    
     // seleziono tutte le immagini e trovo quella attiva
     const allSlides = document.querySelectorAll('.col-10');
     console.log(allSlides);
@@ -89,15 +93,20 @@ nextButton.addEventListener('click', function() {
     const activeSlide = allSlides[activeImg];
     console.log(activeSlide);
     //  devo togliere la classe active all'immagine corrente
+   
     activeSlide.classList.remove('active');
 
     // scorro le immagini di 1
+     if(activeImg == images.length-1){
+        activeImg = 0
+    }
     activeImg++;
-
+    
     //seleziono la seconda immagine
     const nextImg = allSlides[activeImg];
-
+        
+   
     // aggiungo la classe active all'immagine
     nextImg.classList.add('active');
-          
+
 })
