@@ -30,7 +30,6 @@ const images = [
 // stampo in console array 
 console.log(images);
 
-
 let activeImg = 0;
 
 // creo markup
@@ -38,24 +37,18 @@ for (let i = 0; i < images.length; i++) {
     const thisImage = images[i];
     
 
+
     const imagesMarkup =
-    ` <div class="col-10 g-0">
+    ` <div class="col-10 g-0 ${i === activeImg ? 'active' : ''} " >
         <div class="slides">
-            <img class="img-fluid ${i === activeImg ? 'active' : ''}"src="./assets/${thisImage.image}" alt="">
+            <img class="img-fluid}"src="./assets/${thisImage.image}" alt="">
+            <h3>${thisImage.title}</h3>
+            <p>${thisImage.text}</p>
         </div>
     </div>
-    
-    <div class="col-2 g-0 ">
-        <div class="player">
-            <div class="prev_button">
-                <button class="prev rounded-pill px-3 m-3">Prev</button>
-            </div>
-            <div class="next_button">
-                <button class="next rounded-pill px-3 m-3">Next</button> 
-            </div>
-        </div>
-    </div>`
-    document.querySelector('.row').insertAdjacentHTML('beforeend', imagesMarkup)
+   `
+
+    document.querySelector('.row').insertAdjacentHTML('afterbegin', imagesMarkup)
 }
 
 
@@ -64,12 +57,36 @@ const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 
 
+
+// aggiungo funzione click su pulsante prev
+prevButton.addEventListener('click', function(){
+    
+    // seleziono tutte le immagini e trovo quella attiva
+    const allSlides = document.querySelector('.col-10.active');
+    
+    const activeSlide = allSlides[activeImg];
+    //  devo togliere la classe active all'immagine corrente
+    activeSlide.classList.remove('active');
+    
+    // decremento le immagini di 1
+    activeImg--;
+    
+    //seleziono la seconda immagine
+    const nextImg = allSlides[activeImg];
+    
+    // aggiungo la classe active all'immagine
+    nextImg.classList.add('active');
+    
+})
+
 // aggiungo funzione click su pulsante next
 nextButton.addEventListener('click', function() {
     // seleziono tutte le immagini e trovo quella attiva
-    const allSlides = document.querySelectorAll('.slides > img');
-
+    const allSlides = document.querySelector('.col-10.active');
+    console.log(allSlides);
+    
     const activeSlide = allSlides[activeImg];
+    console.log(activeSlide);
     //  devo togliere la classe active all'immagine corrente
     activeSlide.classList.remove('active');
 
@@ -81,30 +98,5 @@ nextButton.addEventListener('click', function() {
 
     // aggiungo la classe active all'immagine
     nextImg.classList.add('active');
-   
-         
           
 })
-
-// aggiungo funzione click su pulsante prev
-prevButton.addEventListener('click', function(){
-
-    // seleziono tutte le immagini e trovo quella attiva
-    const allSlides = document.querySelectorAll('.slides > img');
-
-    const activeSlide = allSlides[activeImg];
-    //  devo togliere la classe active all'immagine corrente
-    activeSlide.classList.remove('active');
-
-    // decremento le immagini di 1
-    activeImg--;
-
-    //seleziono la seconda immagine
-    const nextImg = allSlides[activeImg];
-
-    // aggiungo la classe active all'immagine
-    nextImg.classList.add('active');
-
-
-})
-
