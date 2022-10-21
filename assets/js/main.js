@@ -1,33 +1,68 @@
 // Creo array slides
+const images = [
+{
+    image: 'img/01.webp',
+    title: 'Marvel\'s Spiderman Miles Morale',
+    text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
+}, 
+{
+    image: 'img/02.webp',
+    title: 'Ratchet & Clank: Rift Apart',
+    text: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
+}, 
+{
+    image: 'img/03.webp',
+    title: 'Fortnite',
+    text: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
+}, 
+{
+    image: 'img/04.webp',
+    title: 'Stray',
+    text: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
+}, 
+{
+    image: 'img/05.webp',
+    title: "Marvel's Avengers",
+    text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
+}
+];
 
-const slides = [
-'./assets/img/01.webp',
-'./assets/img/02.webp',
-'./assets/img/03.webp',
-'./assets/img/04.webp',
-'./assets/img/05.webp'
-]
 // stampo in console array 
-console.log(slides);
+console.log(images);
 
 
-// seleziono elemento della DOM dove inserire le immagini
-const slidesElement = document.querySelector('.slides');
+let activeImg = 0;
 
-// scorro le immagini nell'array e le inserisco dinamicamente nell'elemento della DOM
-for (let i = 0; i < slides.length; i++) {
-    const slideImg = slides[i];
-    const slideToCreate = `<img class="${i === 0 ? 'active' : ''}" src="${slideImg}" alt="">`;
-    slidesElement.insertAdjacentHTML('beforeend', slideToCreate);
-    console.log(slideToCreate);
+// creo markup
+for (let i = 0; i < images.length; i++) {
+    const thisImage = images[i];
+    
+
+    const imagesMarkup =
+    ` <div class="col-10 g-0">
+        <div class="slides">
+            <img class="img-fluid ${i === activeImg ? 'active' : ''}"src="./assets/${thisImage.image}" alt="">
+        </div>
+    </div>
+    
+    <div class="col-2 g-0 ">
+        <div class="player">
+            <div class="prev_button">
+                <button class="prev rounded-pill px-3 m-3">Prev</button>
+            </div>
+            <div class="next_button">
+                <button class="next rounded-pill px-3 m-3">Next</button> 
+            </div>
+        </div>
+    </div>`
+    document.querySelector('.row').insertAdjacentHTML('beforeend', imagesMarkup)
 }
 
 
-// seleziono elemento della DOM dove inserire i pulsanti
+// // seleziono elemento della DOM dove inserire i pulsanti
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 
-let activeImg = 0;
 
 // aggiungo funzione click su pulsante next
 nextButton.addEventListener('click', function() {
@@ -47,8 +82,6 @@ nextButton.addEventListener('click', function() {
     // aggiungo la classe active all'immagine
     nextImg.classList.add('active');
    
-    
-      
          
           
 })
